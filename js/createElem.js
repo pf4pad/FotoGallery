@@ -4,8 +4,3 @@ export const createElem = (tags, attrs) => {
   Object.assign(elem, attrs);
   return elem
 }
-
-createElem('div', {
-  className: 'block',
-  textContent: 'Hi'
-})
