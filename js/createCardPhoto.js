@@ -1,5 +1,13 @@
 import { createElem } from "./createElem.js";
 
+const loadImage = (url, description) => {
+  const img = new Image();
+  img.width = '200';
+  img.src = url;
+  img.alt = description;
+  return img;
+}
+
 export const createCardPhoto = (data) => {
   const card = createElem('li', {
     className: 'card'
@@ -12,10 +20,7 @@ export const createCardPhoto = (data) => {
   });;
 
 
-  const photo = new Image();
-  photo.width = '200';
-  photo.src = data.urls.small;
-  photo.alt = data.alt_decription;
+  const photo = loadImage(data.urls.small, data.alt_decription)
 
   const author = createElem('a', {
     id: data.id,
