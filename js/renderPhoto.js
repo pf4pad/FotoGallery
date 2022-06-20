@@ -2,9 +2,9 @@ import { createElem } from "./createElem.js"
 
 export const renderPhoto = (photoWrapper, photo) => {
 
-  const img = ('img', {
+  const img = createElem('img', {
     className: 'photo__picture',
-    src: photo.urls.full,
+    src: photo.urls.regular,
     alt: photo.description || photo.alt_description,
     style: 'max-height: 80vh',
   });
@@ -45,6 +45,7 @@ export const renderPhoto = (photoWrapper, photo) => {
   photoControl.append(photoLike, photoDownload);
 
   photoWrapper.append(img, author, photoControl);
+
   return photoWrapper;
 }
 
