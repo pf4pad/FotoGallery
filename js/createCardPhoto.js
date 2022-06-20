@@ -53,7 +53,7 @@ export const createCardPhoto = async (data) => {
   author.append(avatarAuthor);
 
   const likeBtn = createElem('button', {
-    className: 'card__photo - like',
+    className: 'card__photo-like',
     textContent: data.liles,
   });
 

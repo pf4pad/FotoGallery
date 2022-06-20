@@ -4,7 +4,7 @@ export const renderPhoto = (photoWrapper, photo) => {
 
   const img = ('img', {
     className: 'photo__picture',
-    src: photo.urls.regular,
+    src: photo.urls.full,
     alt: photo.description || photo.alt_description,
     style: 'max-height: 80vh',
   });
@@ -18,7 +18,7 @@ export const renderPhoto = (photoWrapper, photo) => {
     title: photo.user.name,
   });
   const userName = createElem('span', {
-    textContent: photo.user.username,
+    textContent: photo.user.username
   });
 
   const photoControl = createElem('div', {
@@ -30,8 +30,12 @@ export const renderPhoto = (photoWrapper, photo) => {
     className: 'photo__like',
     textContent: photo.likes
   });
+  if (!photoLike.likedByUser) {
+    photoLike.classList.add('photo__like_o');
+  }
   const photoDownload = createElem('a', {
     className: 'photo__download',
+    href: photo.links.download,
     download: 'true',
     href: photo.links.download,
     target: '_blank',
@@ -39,7 +43,9 @@ export const renderPhoto = (photoWrapper, photo) => {
 
   author.append(avatarAuthor, userName);
   photoControl.append(photoLike, photoDownload);
+
   photoWrapper.append(img, author, photoControl);
+  return photoWrapper;
 }
 
 
