@@ -4,13 +4,13 @@ const loadImage = (url, description) => {
 
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.width = '200';
+    img.width = 200;
     img.src = url;
     img.alt = description;
     img.addEventListener('load', () => {
       resolve(img)
     });
-    img.addEventListener('error', () => {
+    img.addEventListener('error', (err) => {
       reject(new Error(err))
     })
   })
@@ -27,7 +27,7 @@ export const createCardPhoto = async (data) => {
     id: data.id,
     className: 'grid-item',
     href: `page.html?photo=${data.id}`
-  });;
+  });
 
 
   const photo = await loadImage(data.urls.small, data.decription);
@@ -54,12 +54,11 @@ export const createCardPhoto = async (data) => {
 
   const likeBtn = createElem('button', {
     className: 'card__photo-like',
-    textContent: data.liles,
+    textContent: data.likes,
   });
 
 
   const downloadLink = createElem('a', {
-
     className: 'card__download',
     href: data.links.download,
     download: true,

@@ -1,7 +1,7 @@
 import { createCardPhoto } from "./createCardPhoto.js";
 import { createElem } from "./createElem.js";
 
-import { scrollLoad } from "./ScrollLoad.js";
+import { scrollLoad } from "./scrollLoad.js";
 
 export const renderGallery = (wrapper, photos) => {
   const gallery = createElem('ul', {

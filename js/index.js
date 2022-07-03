@@ -6,6 +6,8 @@ import { renderPhoto } from "./renderPhoto.js";
 
 import { authorization } from "./authorization.js";
 
+import { handlerLike } from './handlerLike.js';
+
 const init = async ({ selectorGalleryWrapper, selectorPhotoWrapper,
   selectorAuthButton
 }) => {
@@ -25,16 +27,16 @@ const init = async ({ selectorGalleryWrapper, selectorPhotoWrapper,
     const url = new URL(location.href);
     const idPhoto = url.searchParams.get('photo');
     if (idPhoto) {
-      const photo = await getData({
-        idPhoto
-      });
+      const photo = await getData({ idPhoto });
+      const photoLike = renderPhoto(photoWrapper, photo);
 
-      renderPhoto(photoWrapper, photo);
+      photoLike.addEventListener('click', () => {
+        if (localStorage.getItem('Bearer')) {
+          handlerLike(photoLike);
+        }
+      })
     }
-
   }
-
-
 }
 
 init({

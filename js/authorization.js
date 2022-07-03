@@ -56,8 +56,6 @@ const login = () => {
   url.searchParams.append('scope', SCOPE)
 
   location.href = url
-
-
 }
 
 const logout = (e) => {
@@ -72,7 +70,7 @@ const logout = (e) => {
 export const authorization = async (btn) => {
   if (await checkLogin()) {
     const dataUser = await getUserData();
-
+    // console.log(dataUser)
     btn.textContent = dataUser.username;
     btn.style.backgroundImage = `url(${dataUser.profile_image.medium})`
     btn.addEventListener('click', logout)
@@ -81,5 +79,4 @@ export const authorization = async (btn) => {
     console.log('NO')
     btn.addEventListener('click', login);
   }
-
 }

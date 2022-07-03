@@ -1,7 +1,7 @@
 import { createElem } from "./createElem.js"
 
 export const renderPhoto = (photoWrapper, photo) => {
-
+  console.log(photo);
   const img = createElem('img', {
     className: 'photo__picture',
     src: photo.urls.regular,
@@ -15,7 +15,7 @@ export const renderPhoto = (photoWrapper, photo) => {
   const avatarAuthor = createElem('img', {
     src: photo.user.profile_image.medium,
     alt: photo.user.bio,
-    title: photo.user.name,
+    title: photo.user.username,
   });
   const userName = createElem('span', {
     textContent: photo.user.username
@@ -28,7 +28,8 @@ export const renderPhoto = (photoWrapper, photo) => {
   const photoLike = createElem('button', {
     id: photo.id,
     className: 'photo__like',
-    textContent: photo.likes
+    textContent: photo.likes,
+    likedByUser: photo.liked_by_user,
   });
   if (!photoLike.likedByUser) {
     photoLike.classList.add('photo__like_o');
@@ -37,7 +38,7 @@ export const renderPhoto = (photoWrapper, photo) => {
     className: 'photo__download',
     href: photo.links.download,
     download: 'true',
-    href: photo.links.download,
+    href: photo.urls.raw,
     target: '_blank',
   });
 
@@ -46,7 +47,8 @@ export const renderPhoto = (photoWrapper, photo) => {
 
   photoWrapper.append(img, author, photoControl);
 
-  return photoWrapper;
+  return photoLike;
+  // return photoWrapper;
 }
 
 
